@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const RoomCodePageContainer = styled.div`
-  height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
   justify-content: center;
 `;

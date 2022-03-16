@@ -33,6 +33,12 @@ const GlobalStyle = createGlobalStyle`
         font-size: var(--font-size-medium);
     }
 
+    #root{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
     ::selection{
         background-color: var(--accent-color);
     }

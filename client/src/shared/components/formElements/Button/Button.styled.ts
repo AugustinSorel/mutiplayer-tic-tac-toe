@@ -10,4 +10,5 @@ export const ButtonStyle = styled(motion.button)`
   padding: 0.5rem 4rem;
   background-color: #03858a;
   cursor: pointer;
+  user-select: none;
 `;
