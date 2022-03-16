@@ -1,47 +1,44 @@
-import { TapInfo, useCycle } from "framer-motion";
 import { useState } from "react";
-import { InputContainer, InputStyle, Label, Underline } from "./Input.styled";
+import { InputContainer, InputStyle, Label } from "./Input.styled";
 
 const variantsLabel = {
-  active: {
-    x: -15,
-    y: -20,
+  moveToTop: {
+    x: -22,
+    y: -30,
     scale: 0.7,
   },
-  inactive: { x: 0, y: 0, scale: 1 },
+  moveBack: { x: 0, y: 0, scale: 1 },
 };
-
-const motionLabel = (state: string) => {
-  return {
-    animate: state,
-    variants: variantsLabel,
-  };
-};
-
 const Input = () => {
-  const [focus, cycleFocus] = useCycle("inactive", "active");
-  const [blur, cycleBlur] = useCycle("inactive", "active");
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-  const [value, setValue] = useState("");
-
-  const onTapStart = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-    info: TapInfo
-  ) => {
-    focus === "inactive" && cycleFocus();
-    return blur === "inactive" && cycleBlur();
+  const onTapStart = () => {
+    setIsInputFocused(true);
   };
 
   const onBlur = () => {
-    value === "" && cycleFocus();
-    cycleBlur();
+    setIsInputFocused(!(inputValue === ""));
+  };
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
   };
 
   return (
     <InputContainer>
-      <InputStyle type={"text"} onTap={onTapStart} onBlur={onBlur} />
-      <Label {...motionLabel(focus)}>Hello World</Label>
-      <Underline />
+      <InputStyle
+        type={"text"}
+        onTap={onTapStart}
+        onBlur={onBlur}
+        onChange={onChangeHandler}
+      />
+      <Label
+        animate={isInputFocused ? "moveToTop" : "moveBack"}
+        variants={variantsLabel}
+      >
+        game room
+      </Label>
     </InputContainer>
   );
 };

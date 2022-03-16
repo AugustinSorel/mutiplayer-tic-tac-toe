@@ -4,49 +4,28 @@ import styled from "styled-components";
 export const InputContainer = styled.div`
   position: relative;
   width: 80%;
-  padding: 18px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #2f528f;
+  max-width: 400px;
+  border-bottom: var(--border-height) solid var(--accent-color);
 `;
 
 export const InputStyle = styled(motion.input)`
-  background: transparent;
-  /* background: blue; */
-  position: absolute;
-  left: 0;
-  top: 50%;
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-regular);
   color: var(--text-color);
+  width: 100%;
   border: none;
   outline: none;
-
-  &:focus {
-    outline: none;
-  }
-  &::placeholder {
-    color: #fff;
-  }
+  background: transparent;
+  font-family: inherit;
 `;
 
-export const Label = styled(motion.span)`
-  align-self: center;
+export const Label = styled(motion.label)`
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-light);
   position: absolute;
   left: 0;
-  top: 50%;
-  grid-area: input;
-  font-family: Montserrat;
-  font-size: 18px;
+  bottom: 10px;
   line-height: 18px;
-  text-align: left;
   pointer-events: none;
-  font-weight: normal;
-  /* background: green; */
-`;
-
-export const Underline = styled.div`
-  position: absolute;
-  background-color: #2f528f;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
+  text-transform: capitalize;
 `;
