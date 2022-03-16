@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { FC, useState } from "react";
+import labelVariants from "../../../framer-motion/labelVariants";
 import { InputContainer, InputStyle, Label } from "./Input.styled";
 
-const variantsLabel = {
-  moveToTop: {
-    x: -22,
-    y: -30,
-    scale: 0.7,
-  },
-  moveBack: { x: 0, y: 0, scale: 1 },
-};
-const Input = () => {
+interface Props {
+  type: string;
+  title: string;
+}
+
+const Input: FC<Props> = ({ type, title }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -25,19 +23,20 @@ const Input = () => {
     setInputValue(e.target.value);
   };
 
+  const getLabelAnimate = () => {
+    return isInputFocused ? "moveToTop" : "moveBack";
+  };
+
   return (
     <InputContainer>
       <InputStyle
-        type={"text"}
-        onTap={onTapStart}
+        type={type}
+        onTapStart={onTapStart}
         onBlur={onBlur}
         onChange={onChangeHandler}
       />
-      <Label
-        animate={isInputFocused ? "moveToTop" : "moveBack"}
-        variants={variantsLabel}
-      >
-        game room
+      <Label animate={getLabelAnimate()} variants={labelVariants}>
+        {title}
       </Label>
     </InputContainer>
   );
