@@ -1,9 +1,14 @@
+import { FC } from "react";
 import { HeaderTitle } from "./Header.styled";
 
-const Header = () => {
+interface Props {
+  title: string;
+}
+
+const Header: FC<Props> = ({ title }) => {
   return (
     <header>
-      <HeaderTitle>Multiplayer Tic Tac Toe</HeaderTitle>
+      <HeaderTitle>{title}</HeaderTitle>
     </header>
   );
 };

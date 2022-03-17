@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RoomCodePageContainer = styled.div`
+export const RoomCodePageContainer = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;

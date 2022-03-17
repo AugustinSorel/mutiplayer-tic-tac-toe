@@ -5,4 +5,5 @@ export const HeaderTitle = styled.h1`
   font-weight: var(--font-weight-regular);
   text-align: center;
   padding: 1rem;
+  text-transform: capitalize;
 `;
