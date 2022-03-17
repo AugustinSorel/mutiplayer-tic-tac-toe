@@ -13,7 +13,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<RoomCodePage />} />
-        <Route path="/game" element={<GamePage />} />
+        <Route path="/game/:gameId" element={<GamePage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </ThemeProvider>

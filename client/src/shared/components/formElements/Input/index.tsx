@@ -5,22 +5,19 @@ import { InputContainer, InputStyle, Label } from "./Input.styled";
 interface Props {
   type: string;
   title: string;
+  value: string;
+  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FC<Props> = ({ type, title }) => {
+const Input: FC<Props> = ({ type, title, value, onChangeHandler }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [inputValue, setInputValue] = useState("");
 
   const onTapStart = () => {
     setIsInputFocused(true);
   };
 
   const onBlur = () => {
-    setIsInputFocused(!(inputValue === ""));
-  };
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setIsInputFocused(!!value);
   };
 
   const getLabelAnimate = () => {
@@ -34,6 +31,7 @@ const Input: FC<Props> = ({ type, title }) => {
         onTapStart={onTapStart}
         onBlur={onBlur}
         onChange={onChangeHandler}
+        value={value}
       />
       <Label animate={getLabelAnimate()} variants={labelVariants}>
         {title}
