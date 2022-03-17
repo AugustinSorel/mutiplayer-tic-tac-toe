@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import labelVariants from "../../../framer-motion/labelVariants";
 import { InputContainer, InputStyle, Label } from "./Input.styled";
 
@@ -23,6 +23,12 @@ const Input: FC<Props> = ({ type, title, value, onChangeHandler }) => {
   const getLabelAnimate = () => {
     return isInputFocused ? "moveToTop" : "moveBack";
   };
+
+  useEffect(() => {
+    if (value) {
+      setIsInputFocused(true);
+    }
+  }, []);
 
   return (
     <InputContainer>
