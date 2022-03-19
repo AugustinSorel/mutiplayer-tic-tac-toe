@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HeaderTitle } from "./Header.styled";
+import { HeaderContainer, HeaderTitle } from "./Header.styled";
 
 interface Props {
   title: string;
@@ -7,9 +7,13 @@ interface Props {
 
 const Header: FC<Props> = ({ title }) => {
   return (
-    <header>
+    <HeaderContainer
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-100%" }}
+    >
       <HeaderTitle>{title}</HeaderTitle>
-    </header>
+    </HeaderContainer>
   );
 };
 

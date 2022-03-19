@@ -31,8 +31,16 @@ const GlobalStyle = createGlobalStyle`
         color: var(--text-color);
         font-family: 'Poppins', sans-serif;
         font-size: var(--font-size-medium);
+        overflow: hidden;
     }
-    
+
+    #root{
+        display: flex;
+        flex-direction: column;
+        
+        height: 100vh;
+    }
+
     ::selection{
         background-color: var(--accent-color);
     }

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../shared/components/formElements/Button";
 import Input from "../../shared/components/formElements/Input";
 import Header from "../../shared/components/navigation/Header";
-import TransitionWrapper from "../../shared/components/navigation/TransitionWrapper";
 import useGame from "../../shared/store/useGame";
 import { RoomCodePageContainer } from "./RoomCodePage.styled";
 
@@ -28,10 +27,15 @@ const RoomCodePage = () => {
   };
 
   return (
-    <TransitionWrapper>
+    <>
       <Header title="Please enter a room code" />
 
-      <RoomCodePageContainer onSubmit={submitHandler}>
+      <RoomCodePageContainer
+        onSubmit={submitHandler}
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "100%" }}
+      >
         <Input
           title="game room"
           type="text"
@@ -40,7 +44,7 @@ const RoomCodePage = () => {
         />
         <Button title="play" />
       </RoomCodePageContainer>
-    </TransitionWrapper>
+    </>
   );
 };
 
