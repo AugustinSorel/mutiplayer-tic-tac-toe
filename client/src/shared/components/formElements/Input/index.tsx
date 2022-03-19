@@ -28,7 +28,7 @@ const Input: FC<Props> = ({ type, title, value, onChangeHandler }) => {
     if (value) {
       setIsInputFocused(true);
     }
-  }, []);
+  }, [value]);
 
   return (
     <InputContainer>
