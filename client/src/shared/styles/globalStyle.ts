@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
 
     :root {
         --background-color: ${({ theme }) => theme.colors.backgroundColor};
+        --accent-background-color: ${({ theme }) =>
+          theme.colors.accentBackgroundColor};
         --text-color: ${({ theme }) => theme.colors.textColor};
         --accent-color: ${({ theme }) => theme.colors.accentColor};
         

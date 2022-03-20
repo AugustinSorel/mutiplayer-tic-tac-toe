@@ -8,7 +8,7 @@ export const ButtonStyle = styled(motion.button)`
   border-radius: var(--border-radius);
   border: none;
   padding: 0.5rem 4rem;
-  background-color: #03858a;
+  background-color: var(--accent-background-color);
   cursor: pointer;
   user-select: none;
 `;
