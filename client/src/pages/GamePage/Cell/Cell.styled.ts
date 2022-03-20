@@ -6,4 +6,5 @@ export const CellStyle = styled(motion.div)`
   height: 100%;
   width: 100%;
   cursor: pointer;
+  padding: 1rem;
 `;
