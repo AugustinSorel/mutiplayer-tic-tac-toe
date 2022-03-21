@@ -1,31 +1,24 @@
 import { FC } from "react";
 import SvgIcon from "../../../shared/components/formElements/SvgIcon";
+import useGame from "../../../shared/store/useGame";
 import theme from "../../../shared/styles/theme";
 import SvpPaths from "../../../shared/utils/SvgPaths";
 import { CellStyle } from "./Cell.styled";
 
 interface Props {
-  gameStatus: string[];
-  setGameStatus: (gameStatus: string[]) => void;
-
-  isPlayerOneTurn: boolean;
-  setIsPlayerOneTurn: (isPlayerOneTurn: boolean) => void;
-
   index: number;
 }
 
-const Cell: FC<Props> = ({
-  isPlayerOneTurn,
-  setIsPlayerOneTurn,
-  gameStatus,
-  setGameStatus,
-  index,
-}) => {
+const Cell: FC<Props> = ({ index }) => {
+  const gameCell = useGame((state) => state.getGameCell(index));
+  const setGameStatus = useGame((state) => state.setGameStatus);
+
   const clickHandler = () => {
-    setIsPlayerOneTurn(!isPlayerOneTurn);
-    const newGameStatus = [...gameStatus];
-    newGameStatus[index] = isPlayerOneTurn ? "X" : "O";
-    setGameStatus(newGameStatus);
+    if (gameCell !== "") {
+      return;
+    }
+
+    setGameStatus(index);
   };
 
   return (
@@ -35,9 +28,9 @@ const Cell: FC<Props> = ({
       }}
       onClick={clickHandler}
     >
-      {gameStatus[index] === "X" && <SvgIcon path={SvpPaths.cross} />}
+      {gameCell === "X" && <SvgIcon path={SvpPaths.cross} />}
 
-      {gameStatus[index] === "O" && <SvgIcon path={SvpPaths.circle} />}
+      {gameCell === "O" && <SvgIcon path={SvpPaths.circle} />}
     </CellStyle>
   );
 };
