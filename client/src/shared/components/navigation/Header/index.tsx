@@ -8,9 +8,9 @@ interface Props {
 const Header: FC<Props> = ({ title }) => {
   return (
     <HeaderContainer
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
-      exit={{ y: "-100%" }}
+    // initial={{ y: "-100%" }}
+    // animate={{ y: 0 }}
+    // exit={{ y: "-100%" }}
     >
       <HeaderTitle>{title}</HeaderTitle>
     </HeaderContainer>

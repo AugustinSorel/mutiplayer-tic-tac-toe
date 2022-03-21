@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
         color: var(--text-color);
         font-family: 'Poppins', sans-serif;
         font-size: var(--font-size-medium);
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     #root{
