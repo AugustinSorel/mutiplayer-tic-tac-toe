@@ -34,12 +34,7 @@ const RoomCodePage = () => {
 
       <Header title="Please enter a room code" />
 
-      <RoomCodePageContainer
-        onSubmit={submitHandler}
-        // initial={{ y: "100%" }}
-        // animate={{ y: 0 }}
-        // exit={{ y: "100%" }}
-      >
+      <RoomCodePageContainer onSubmit={submitHandler}>
         <Input
           title="game room"
           type="text"

@@ -17,11 +17,7 @@ const GameBoard = () => {
   ]);
 
   return (
-    <GameBoardContainer
-    // initial={{ y: "200%" }}
-    // animate={{ y: 0 }}
-    // exit={{ y: "200%" }}
-    >
+    <GameBoardContainer>
       {[...Array(9)].map((_, index) => (
         <Cell
           key={index}
