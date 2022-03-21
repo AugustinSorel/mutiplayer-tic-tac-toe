@@ -1,6 +1,10 @@
 import create from "zustand";
 
-type gameChars = "X" | "O" | "";
+enum gameChars {
+  playerOne = "X",
+  playerTwo = "O",
+  empty = "",
+}
 
 interface GameState {
   roomCode: string;
@@ -16,16 +20,11 @@ interface GameState {
 
 const useGame = create<GameState>((set, get) => ({
   roomCode: "",
-  setRoomCode: (roomCode: string) => set((state) => ({ ...state, roomCode })),
+  setRoomCode: (roomCode: string) => set(() => ({ roomCode })),
 
-  gameStatus: ["", "", "", "", "", "", "", "", ""],
-  setGameStatus: (index: number) => {
-    set((state) => {
-      const newGameStatus = [...state.gameStatus];
-      newGameStatus[index] = state.isPlayerOneTurn ? "X" : "O";
-
-      return { ...state, gameStatus: newGameStatus };
-    });
+  gameStatus: Array(24).fill(gameChars.empty),
+  setGameStatus: (cellTargetIndex: number) => {
+    set((state) => ({ gameStatus: getNewGameStatus(state, cellTargetIndex) }));
 
     set((state) => ({ isPlayerOneTurn: !state.isPlayerOneTurn }));
   },
@@ -38,3 +37,16 @@ const useGame = create<GameState>((set, get) => ({
 }));
 
 export default useGame;
+
+function getNewGameStatus(
+  state: GameState,
+  cellTargetIndex: number
+): gameChars[] {
+  return state.gameStatus.map((cell, index) => {
+    return index === cellTargetIndex
+      ? state.isPlayerOneTurn
+        ? gameChars.playerOne
+        : gameChars.playerTwo
+      : cell;
+  });
+}
