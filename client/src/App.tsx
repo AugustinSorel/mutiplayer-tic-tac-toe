@@ -6,8 +6,18 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import GamePage from "./pages/GamePage";
 import { AnimatePresence } from "framer-motion";
 
+import { io } from "socket.io-client";
+import { useEffect } from "react";
+
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    const socket = io("http://localhost:5000");
+    socket.on("connection", (data) => {
+      console.log(data);
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

@@ -5,7 +5,11 @@ import { Server } from "socket.io";
 const app = express();
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 app.get("/", (req: Request, res: Response) => {
   res.sendStatus(200);
