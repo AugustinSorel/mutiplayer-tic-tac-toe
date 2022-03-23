@@ -8,12 +8,13 @@ import { AnimatePresence } from "framer-motion";
 
 import { io } from "socket.io-client";
 import { useEffect } from "react";
+import apiPath from "./shared/utils/apiPath";
 
 function App() {
   const location = useLocation();
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io(apiPath);
     socket.on("connection", (data) => {
       console.log(data);
     });
