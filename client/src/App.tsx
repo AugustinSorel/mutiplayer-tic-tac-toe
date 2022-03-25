@@ -5,16 +5,14 @@ import theme from "./shared/styles/theme";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import GamePage from "./pages/GamePage";
 import { AnimatePresence } from "framer-motion";
-
-import { io } from "socket.io-client";
 import { useEffect } from "react";
-import apiPath from "./shared/utils/apiPath";
+import useGame from "./shared/store/useGame";
 
 function App() {
   const location = useLocation();
+  const socket = useGame((state) => state.socket);
 
   useEffect(() => {
-    const socket = io(apiPath);
     socket.on("connection", (data) => {
       console.log(data);
     });

@@ -17,6 +17,11 @@ app.get("/", (req: Request, res: Response) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
+
+  socket.on("join_room", () => {
+    console.log("join_room");
+  });
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
