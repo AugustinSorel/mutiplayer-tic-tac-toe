@@ -18,12 +18,40 @@ app.get("/", (req: Request, res: Response) => {
 io.on("connection", (socket) => {
   console.log("a user connected");
 
-  socket.on("joinRoom", (roomId) => {
-    console.log("roomId", roomId);
+  socket.on("joinRoom", async (roomId) => {
+    console.log("user is trying to enter the room:", roomId);
 
-    socket.emit("joinRoomError", {
-      errorMessage: "Room is full please choose another room to play!",
-    });
+    const connectedSockets = io.sockets.adapter.rooms.get(roomId);
+    const socketRooms = Array.from(socket.rooms.values()).filter(
+      (room) => room !== socket.id
+    );
+
+    console.log("connected sockets:", connectedSockets);
+    console.log("socket rooms:", socketRooms);
+
+    if (socketRooms.length > 0) {
+      socket.emit("joinRoomError", {
+        errorMessage: "You have already joined this room!",
+      });
+
+      return;
+    }
+
+    if (connectedSockets && connectedSockets.size === 2) {
+      socket.emit("joinRoomError", {
+        errorMessage: "Room is full please choose another room to play!",
+      });
+
+      return;
+    }
+
+    await socket.join(roomId);
+    socket.emit("roomJoined");
+
+    if (io.sockets.adapter.rooms.get(roomId)?.size === 2) {
+      socket.emit("startGame", { start: true, symbol: "x" });
+      socket.to(roomId).emit("startGame", { start: false, symbol: "o" });
+    }
   });
 
   socket.on("disconnect", () => {

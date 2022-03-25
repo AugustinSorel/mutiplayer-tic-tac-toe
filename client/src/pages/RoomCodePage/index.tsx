@@ -23,6 +23,10 @@ const RoomCodePage = () => {
     socket.on("joinRoomError", ({ errorMessage }) => {
       console.log(errorMessage);
     });
+
+    socket.on("startGame", ({ start }) => {
+      console.log("game can start");
+    });
   }, [socket]);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
