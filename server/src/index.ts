@@ -18,8 +18,12 @@ app.get("/", (req: Request, res: Response) => {
 io.on("connection", (socket) => {
   console.log("a user connected");
 
-  socket.on("join_room", () => {
-    console.log("join_room");
+  socket.on("joinRoom", (roomId) => {
+    console.log("roomId", roomId);
+
+    socket.emit("joinRoomError", {
+      errorMessage: "Room is full please choose another room to play!",
+    });
   });
 
   socket.on("disconnect", () => {

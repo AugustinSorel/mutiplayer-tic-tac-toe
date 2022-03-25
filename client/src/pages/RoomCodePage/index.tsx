@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/components/formElements/Button";
 import Input from "../../shared/components/formElements/Input";
@@ -9,8 +10,20 @@ import { RoomCodePageContainer } from "./RoomCodePage.styled";
 const RoomCodePage = () => {
   const roomCode = useGame((state) => state.roomCode);
   const setRoomCode = useGame((state) => state.setRoomCode);
+  const socket = useGame((state) => state.socket);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    socket.on("roomJoined", () => {
+      console.log("roomJoined");
+      // navigate(`/game/${roomCode}`);
+    });
+
+    socket.on("joinRoomError", ({ errorMessage }) => {
+      console.log(errorMessage);
+    });
+  }, [socket]);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRoomCode(event.target.value);
@@ -23,8 +36,7 @@ const RoomCodePage = () => {
       return;
     }
 
-    console.log(roomCode);
-    navigate(`/game/${roomCode}`);
+    socket.emit("joinRoom", roomCode);
   };
 
   return (

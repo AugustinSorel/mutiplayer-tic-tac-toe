@@ -13,10 +13,9 @@ function App() {
   const socket = useGame((state) => state.socket);
 
   useEffect(() => {
-    socket.on("connection", (data) => {
-      console.log(data);
-    });
-  }, []);
+    socket.on("connection", () => {});
+    console.log("client connected");
+  }, [socket]);
 
   return (
     <ThemeProvider theme={theme}>
