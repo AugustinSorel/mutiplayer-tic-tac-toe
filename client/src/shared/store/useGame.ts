@@ -6,9 +6,6 @@ import GameState from "../../game/utils/GameState";
 import apiPath from "../utils/apiPath";
 
 const useGame = create<GameState>((set, get) => ({
-  roomCode: "",
-  setRoomCode: (roomCode: string) => set(() => ({ roomCode })),
-
   socket: io(apiPath),
 
   gameStatus: Array(24).fill(gameChars.empty),
@@ -20,10 +17,6 @@ const useGame = create<GameState>((set, get) => ({
   getGameCell: (index: number) => get().gameStatus[index],
 
   isPlayerOneTurn: true,
-
-  bothPlayersJoined: false,
-  setBothPlayersJoined: (bothPlayersJoined: boolean) =>
-    set(() => ({ bothPlayersJoined })),
 }));
 
 export default useGame;

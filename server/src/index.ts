@@ -54,6 +54,12 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("leaveRoom", (roomId) => {
+    console.log("user is trying to leave the room:", roomId);
+
+    socket.leave(roomId);
+  });
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
