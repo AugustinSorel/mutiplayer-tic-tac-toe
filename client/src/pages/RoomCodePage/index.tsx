@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/components/formElements/Button";
 import Input from "../../shared/components/formElements/Input";
@@ -11,12 +11,23 @@ const RoomCodePage = () => {
   const roomCode = useGame((state) => state.roomCode);
   const setRoomCode = useGame((state) => state.setRoomCode);
   const socket = useGame((state) => state.socket);
+  const setBothPlayersJoined = useGame((state) => state.setBothPlayersJoined);
+
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (success) {
+      navigate(`/game/${roomCode}`);
+    }
+  }, [success]);
+
+  useEffect(() => {
     socket.on("roomJoined", () => {
-      console.log("roomJoined");
+      // setSuccess(true);
+      console.log("room code", roomCode);
+
       // navigate(`/game/${roomCode}`);
     });
 
@@ -25,7 +36,7 @@ const RoomCodePage = () => {
     });
 
     socket.on("startGame", ({ start }) => {
-      console.log("game can start");
+      setBothPlayersJoined(true);
     });
   }, [socket]);
 

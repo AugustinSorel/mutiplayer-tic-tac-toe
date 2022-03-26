@@ -13,6 +13,9 @@ interface GameState {
   getGameCell: (index: number) => gameChars;
 
   isPlayerOneTurn: boolean;
+
+  bothPlayersJoined: boolean;
+  setBothPlayersJoined: (bothPlayersJoined: boolean) => void;
 }
 
 export default GameState;

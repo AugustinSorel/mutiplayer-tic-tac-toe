@@ -20,6 +20,10 @@ const useGame = create<GameState>((set, get) => ({
   getGameCell: (index: number) => get().gameStatus[index],
 
   isPlayerOneTurn: true,
+
+  bothPlayersJoined: false,
+  setBothPlayersJoined: (bothPlayersJoined: boolean) =>
+    set(() => ({ bothPlayersJoined })),
 }));
 
 export default useGame;
