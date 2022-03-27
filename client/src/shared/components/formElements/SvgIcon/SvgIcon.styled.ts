@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-interface SvgIconContainerProps {
-  inverted: number;
-}
-
-export const SvgIconContainer = styled(motion.div)<SvgIconContainerProps>`
+export const SvgIconContainer = styled(motion.div)`
   padding: 0;
   cursor: pointer;
   border-radius: 50%;
@@ -17,10 +13,7 @@ export const SvgIconContainer = styled(motion.div)<SvgIconContainerProps>`
   justify-content: center;
 
   &:hover {
-    background-color: ${(props) =>
-      props.inverted === 1
-        ? "var(--accent-color)"
-        : "var(--accent-background-color)"};
+    background-color: var(--accent-background-color);
   }
 `;
 

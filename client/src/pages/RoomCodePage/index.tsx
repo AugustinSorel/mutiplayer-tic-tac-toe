@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../shared/components/formElements/Button";
@@ -11,6 +12,7 @@ import { RoomCodePageContainer, RoomIdContainer } from "./RoomCodePage.styled";
 
 const RoomCodePage = () => {
   const [roomCode, setRoomCode] = useState("");
+  const [showClipBoardModal, setShowClipBoardModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,11 +32,19 @@ const RoomCodePage = () => {
 
   const clickHandler = () => {
     navigator.clipboard.writeText(`${window.location.href}game/${roomCode}`);
+    setShowClipBoardModal(true);
   };
 
   return (
     <>
-      <NotificationModal />
+      <AnimatePresence exitBeforeEnter>
+        {showClipBoardModal && (
+          <NotificationModal
+            closeHandler={() => setShowClipBoardModal(false)}
+            text="Copied to clipboard!"
+          />
+        )}
+      </AnimatePresence>
 
       <TransitionElements />
 

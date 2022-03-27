@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import SvgIcon from "../../formElements/SvgIcon";
 import {
   NotificationModalContainer,
@@ -6,18 +6,26 @@ import {
 } from "./NotificationModal.styled";
 import SvgPaths from "../../../utils/SvgPaths";
 
-interface Props {}
+interface Props {
+  closeHandler: () => void;
+  text: string;
+}
 
-const NotificationModal: FC<Props> = () => {
+const NotificationModal: FC<Props> = ({ closeHandler, text }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      closeHandler();
+    }, 1000);
+  }, []);
+
   return (
-    <NotificationModalContainer>
-      <NotificationModalText>Hello World</NotificationModalText>
-      <SvgIcon
-        path={SvgPaths.close}
-        clickHandler={() => null}
-        size="small"
-        inverted
-      />
+    <NotificationModalContainer
+      initial={{ y: "-200%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-200%" }}
+    >
+      <NotificationModalText>{text}</NotificationModalText>
+      <SvgIcon path={SvgPaths.close} clickHandler={closeHandler} size="small" />
     </NotificationModalContainer>
   );
 };

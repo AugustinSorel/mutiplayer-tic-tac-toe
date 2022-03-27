@@ -6,10 +6,9 @@ interface Props {
   path: string;
   clickHandler: () => void;
   size: "small" | "medium" | "large";
-  inverted?: boolean;
 }
 
-const SvgIcon: FC<Props> = ({ path, clickHandler, size, inverted }) => {
+const SvgIcon: FC<Props> = ({ path, clickHandler, size }) => {
   const getSize = () => {
     switch (size) {
       case "small":
@@ -17,7 +16,7 @@ const SvgIcon: FC<Props> = ({ path, clickHandler, size, inverted }) => {
       case "medium":
         return 20;
       case "large":
-        return 30;
+        return 25;
       default:
         return 30;
     }
@@ -27,10 +26,9 @@ const SvgIcon: FC<Props> = ({ path, clickHandler, size, inverted }) => {
     <SvgIconContainer
       whileHover={{ ...scaleUp }}
       whileTap={{ ...scaleDown }}
-      inverted={inverted ? 1 : 0}
+      onClick={clickHandler}
     >
       <SvgIconStyle
-        onClick={clickHandler}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         size={getSize()}
