@@ -22,7 +22,7 @@ export const LoaderCircle = styled(motion.div)`
 `;
 
 export const LoaderText = styled.h2`
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-large);
   font-weight: var(--font-weight-regular);
   text-align: center;
   flex: 1;

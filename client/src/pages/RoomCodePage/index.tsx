@@ -4,6 +4,7 @@ import Button from "../../shared/components/formElements/Button";
 import Input from "../../shared/components/formElements/Input";
 import SvgIcon from "../../shared/components/formElements/SvgIcon";
 import TransitionElements from "../../shared/components/formElements/transitionElements";
+import NotificationModal from "../../shared/components/modals/NotificationModal";
 import Header from "../../shared/components/navigation/Header";
 import SvpPaths from "../../shared/utils/SvgPaths";
 import { RoomCodePageContainer, RoomIdContainer } from "./RoomCodePage.styled";
@@ -33,6 +34,8 @@ const RoomCodePage = () => {
 
   return (
     <>
+      <NotificationModal />
+
       <TransitionElements />
 
       <Header title="Please enter a room code" />
@@ -46,7 +49,11 @@ const RoomCodePage = () => {
             onChangeHandler={onChangeHandler}
           />
 
-          <SvgIcon path={SvpPaths.share} clickHandler={clickHandler} />
+          <SvgIcon
+            path={SvpPaths.share}
+            clickHandler={clickHandler}
+            size="large"
+          />
         </RoomIdContainer>
         <Button title="play" />
       </RoomCodePageContainer>
