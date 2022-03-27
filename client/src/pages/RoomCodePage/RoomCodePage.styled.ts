@@ -8,3 +8,8 @@ export const RoomCodePageContainer = styled.form`
   align-items: center;
   justify-content: center;
 `;
+
+export const RoomIdContainer = styled.div`
+  display: flex;
+  gap: 3rem;
+`;

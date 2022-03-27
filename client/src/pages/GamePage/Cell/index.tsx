@@ -1,5 +1,5 @@
 import { FC } from "react";
-import SvgIcon from "../../../shared/components/formElements/SvgIcon";
+import SvgCellContent from "../../../shared/components/formElements/SvgCellContent";
 import useGame from "../../../shared/store/useGame";
 import theme from "../../../shared/styles/theme";
 import SvpPaths from "../../../shared/utils/SvgPaths";
@@ -28,9 +28,9 @@ const Cell: FC<Props> = ({ index }) => {
       }}
       onClick={clickHandler}
     >
-      {gameCell === "X" && <SvgIcon path={SvpPaths.cross} />}
+      {gameCell === "X" && <SvgCellContent path={SvpPaths.cross} />}
 
-      {gameCell === "O" && <SvgIcon path={SvpPaths.circle} />}
+      {gameCell === "O" && <SvgCellContent path={SvpPaths.circle} />}
     </CellStyle>
   );
 };

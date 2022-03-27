@@ -49,8 +49,8 @@ io.on("connection", (socket) => {
     socket.emit("roomJoined");
 
     if (io.sockets.adapter.rooms.get(roomId)?.size === 2) {
-      socket.emit("startGame", { start: true, symbol: "x" });
-      socket.to(roomId).emit("startGame", { start: false, symbol: "o" });
+      socket.emit("startGame", { isPlayerOne: true });
+      socket.to(roomId).emit("startGame", { isPlayerOne: false });
     }
   });
 
