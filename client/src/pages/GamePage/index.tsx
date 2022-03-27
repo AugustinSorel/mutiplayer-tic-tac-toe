@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TransitionElements from "../../shared/components/formElements/transitionElements";
 import Header from "../../shared/components/navigation/Header";
+import Loader from "../../shared/components/UIElements/Loader";
 import useGame from "../../shared/store/useGame";
 import GameBoard from "./GameBoard";
 
@@ -18,6 +19,7 @@ const GamePage = () => {
     return () => {
       console.log("client wants to leave room:", roomId);
       socket.emit("leaveRoom", roomId);
+      setBothPlayersJoined(false);
     };
   }, []);
 
@@ -41,12 +43,7 @@ const GamePage = () => {
       <TransitionElements />
 
       <Header title="Game page" />
-
-      {bothPlayersJoined ? (
-        <GameBoard />
-      ) : (
-        <div>Waiting for both players to join</div>
-      )}
+      {bothPlayersJoined ? <GameBoard /> : <Loader />}
     </>
   );
 };
