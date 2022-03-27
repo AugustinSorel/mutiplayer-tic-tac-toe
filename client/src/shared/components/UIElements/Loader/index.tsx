@@ -1,8 +1,18 @@
 import { AnimatePresence } from "framer-motion";
+import { FC } from "react";
 import getLoaderVariants from "../../../framer-motion/getLoaderVariants";
-import { LoaderContainer, LoaderDot, LoaderRing } from "./Loader.styled";
+import {
+  LoaderContainer,
+  LoaderDot,
+  LoaderRing,
+  LoaderText,
+} from "./Loader.styled";
 
-const Loader = () => {
+interface Props {
+  text: string;
+}
+
+const Loader: FC<Props> = ({ text }) => {
   return (
     <AnimatePresence initial>
       <LoaderContainer>
@@ -10,6 +20,8 @@ const Loader = () => {
         <LoaderRing variants={getLoaderVariants(1)} animate="animate" />
         <LoaderDot />
       </LoaderContainer>
+
+      <LoaderText>{text}</LoaderText>
     </AnimatePresence>
   );
 };

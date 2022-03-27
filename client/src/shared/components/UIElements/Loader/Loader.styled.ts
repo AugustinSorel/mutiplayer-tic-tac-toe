@@ -7,7 +7,8 @@ export const LoaderContainer = styled.div`
   align-items: center;
   width: 10rem;
   height: 10rem;
-  margin: auto;
+  margin: 0 auto;
+  flex: 2;
 `;
 
 export const LoaderRing = styled(motion.div)`
@@ -31,4 +32,9 @@ export const LoaderDot = styled.div`
   width: 1rem;
   height: 1rem;
   background: var(--text-color);
+`;
+
+export const LoaderText = styled.h2`
+  text-align: center;
+  flex: 1;
 `;

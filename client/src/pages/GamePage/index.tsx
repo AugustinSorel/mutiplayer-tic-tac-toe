@@ -10,7 +10,7 @@ const GamePage = () => {
   const [bothPlayersJoined, setBothPlayersJoined] = useState(false);
   const socket = useGame((state) => state.socket);
   const { pathname } = useLocation();
-  const [roomId, setRoomId] = useState(pathname.split("/")[2]);
+  const [roomId] = useState(pathname.split("/")[2]);
 
   useEffect(() => {
     socket.emit("joinRoom", roomId);
@@ -21,7 +21,7 @@ const GamePage = () => {
       socket.emit("leaveRoom", roomId);
       setBothPlayersJoined(false);
     };
-  }, []);
+  }, [roomId, socket]);
 
   useEffect(() => {
     socket.on("roomJoined", () => {
@@ -43,7 +43,11 @@ const GamePage = () => {
       <TransitionElements />
 
       <Header title="Game page" />
-      {bothPlayersJoined ? <GameBoard /> : <Loader />}
+      {bothPlayersJoined ? (
+        <GameBoard />
+      ) : (
+        <Loader text="Waiting for your friend🥳" />
+      )}
     </>
   );
 };
