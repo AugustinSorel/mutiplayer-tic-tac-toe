@@ -1,42 +1,29 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const LoaderContainer = styled.div`
+export const LoaderContainer = styled(motion.div)`
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10rem;
-  height: 10rem;
-  margin: 0 auto;
   flex: 2;
 `;
 
-export const LoaderRing = styled(motion.div)`
+export const LoaderCircle = styled(motion.div)`
   position: absolute;
-  width: 6rem;
-  height: 6rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
-
-  border-width: 0.75rem;
-  border-style: solid;
-  border-color: transparent;
-
-  border-left-color: var(--text-color);
-  border-right-color: var(--text-color);
-`;
-
-export const LoaderDot = styled.div`
-  position: absolute;
-  border-radius: 50%;
-
-  width: 1rem;
-  height: 1rem;
-  background: var(--text-color);
+  border: 0.8rem solid;
+  border-color: var(--text-color);
 `;
 
 export const LoaderText = styled.h2`
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-regular);
   text-align: center;
   flex: 1;
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-large);
 `;

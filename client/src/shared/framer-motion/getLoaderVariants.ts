@@ -2,13 +2,17 @@ import { Variants } from "framer-motion";
 
 function getLoaderVariants(delay = 0): Variants {
   return {
+    initial: {
+      scale: 0,
+      opacity: 1,
+    },
+
     animate: {
-      rotate: 360,
-      scale: 0.5,
+      scale: 1,
+      opacity: 0,
       transition: {
         repeat: Infinity,
-        repeatType: "reverse",
-        duration: 2,
+        duration: 1.5,
         delay,
       },
     },
