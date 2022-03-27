@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import { FC } from "react";
-import getLoaderVariants from "../../../framer-motion/getLoaderVariants";
+import getRingVariants from "../../../framer-motion/getLoaderVariants";
 import {
   LoaderContainer,
   LoaderDot,
@@ -15,9 +15,9 @@ interface Props {
 const Loader: FC<Props> = ({ text }) => {
   return (
     <AnimatePresence initial>
-      <LoaderContainer>
-        <LoaderRing variants={getLoaderVariants()} animate="animate" />
-        <LoaderRing variants={getLoaderVariants(1)} animate="animate" />
+      <LoaderContainer key={"loaderContainer"}>
+        <LoaderRing variants={getRingVariants()} animate="animate" />
+        <LoaderRing variants={getRingVariants(1)} animate="animate" />
         <LoaderDot />
       </LoaderContainer>
 

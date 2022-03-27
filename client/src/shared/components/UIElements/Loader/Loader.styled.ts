@@ -37,4 +37,6 @@ export const LoaderDot = styled.div`
 export const LoaderText = styled.h2`
   text-align: center;
   flex: 1;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-large);
 `;
