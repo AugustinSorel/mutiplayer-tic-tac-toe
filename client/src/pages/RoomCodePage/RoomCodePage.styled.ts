@@ -12,4 +12,6 @@ export const RoomCodePageContainer = styled.form`
 export const RoomIdContainer = styled.div`
   display: flex;
   gap: 3rem;
+
+  align-items: center;
 `;

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { scaleDown, scaleUp } from "../../../framer-motion/whileVariants";
 import { ButtonStyle } from "./Button.styled";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 
 const Button: FC<Props> = ({ title }) => {
   return (
-    <ButtonStyle whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+    <ButtonStyle whileHover={{ ...scaleUp }} whileTap={{ ...scaleDown }}>
       {title}
     </ButtonStyle>
   );

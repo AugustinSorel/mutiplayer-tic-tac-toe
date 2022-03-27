@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../shared/components/formElements/Button";
 import Input from "../../shared/components/formElements/Input";
-import { InputContainer } from "../../shared/components/formElements/Input/Input.styled";
-import SvgCellContent from "../../shared/components/formElements/SvgCellContent";
+import SvgIcon from "../../shared/components/formElements/SvgIcon";
 import TransitionElements from "../../shared/components/formElements/transitionElements";
 import Header from "../../shared/components/navigation/Header";
 import SvpPaths from "../../shared/utils/SvgPaths";
@@ -28,6 +27,10 @@ const RoomCodePage = () => {
     navigate(`/game/${roomCode}`);
   };
 
+  const clickHandler = () => {
+    navigator.clipboard.writeText(`${window.location.href}game/${roomCode}`);
+  };
+
   return (
     <>
       <TransitionElements />
@@ -43,7 +46,7 @@ const RoomCodePage = () => {
             onChangeHandler={onChangeHandler}
           />
 
-          <SvgCellContent path={SvpPaths.share} />
+          <SvgIcon path={SvpPaths.share} clickHandler={clickHandler} />
         </RoomIdContainer>
         <Button title="play" />
       </RoomCodePageContainer>
