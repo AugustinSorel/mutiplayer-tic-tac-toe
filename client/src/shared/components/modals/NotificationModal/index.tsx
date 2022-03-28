@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import SvgIcon from "../../formElements/SvgIcon";
 import {
   NotificationModalContainer,
@@ -6,16 +5,12 @@ import {
 } from "./NotificationModal.styled";
 import SvgPaths from "../../../utils/SvgPaths";
 import useNotificationModal from "../../../hooks/useNotificationModal";
+import useAutomaticCloseModal from "./useAutomaticCloseModal";
 
 const NotificationModal = () => {
-  const { text, isNotificationModalOpen, closeNotificationModal } =
-    useNotificationModal();
+  const { text, closeNotificationModal } = useNotificationModal();
 
-  useEffect(() => {
-    setTimeout(() => {
-      closeNotificationModal();
-    }, 2000);
-  }, [closeNotificationModal]);
+  useAutomaticCloseModal();
 
   return (
     <NotificationModalContainer
