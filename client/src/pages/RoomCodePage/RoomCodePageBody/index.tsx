@@ -1,37 +1,30 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../../shared/components/formElements/Button";
 import Input from "../../../shared/components/formElements/Input";
 import SvgIcon from "../../../shared/components/formElements/SvgIcon";
-import useClipBoardModal from "../../../shared/hooks/useClipBoardModal";
 import SvpPaths from "../../../shared/utils/SvgPaths";
 import {
   RoomCodePageContainer,
   RoomIdContainer,
 } from "./RoomCodePageBody.styled";
+import useCopyRoomIdToClipboard from "./useCopyRoomIdToClipboard";
+import useNavigateToGamePage from "./useNavigateToGamePage";
 
 const RoomCodePageBody = () => {
-  const [roomCode, setRoomCode] = useState("");
-  const navigate = useNavigate();
-  const { openClipBoardModal } = useClipBoardModal();
+  const [roomId, setRoomId] = useState("");
+  const copyRoomIdToClipboard = useCopyRoomIdToClipboard();
+  const navigateToGamePage = useNavigateToGamePage();
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRoomCode(event.target.value);
-  };
-
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!roomCode) {
-      return;
-    }
-
-    navigate(`/game/${roomCode}`);
+    setRoomId(event.target.value);
   };
 
   const clickHandler = () => {
-    navigator.clipboard.writeText(`${window.location.href}game/${roomCode}`);
-    openClipBoardModal();
+    copyRoomIdToClipboard(roomId);
+  };
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    navigateToGamePage(e, roomId);
   };
 
   return (
@@ -40,7 +33,7 @@ const RoomCodePageBody = () => {
         <Input
           title="game room"
           type="text"
-          value={roomCode}
+          value={roomId}
           onChangeHandler={onChangeHandler}
         />
 
