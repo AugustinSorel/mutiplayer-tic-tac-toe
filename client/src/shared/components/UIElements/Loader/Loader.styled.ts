@@ -1,15 +1,12 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const LoaderContainer = styled(motion.div)`
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto;
-
+export const LoaderWrapper = styled(motion.main)`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 2;
+
+  margin: auto;
 `;
 
 export const LoaderCircle = styled(motion.div)`
@@ -21,9 +18,9 @@ export const LoaderCircle = styled(motion.div)`
   border-color: var(--text-color);
 `;
 
-export const LoaderText = styled.h2`
+export const LoaderText = styled(motion.h2)`
   font-size: var(--font-size-large);
   font-weight: var(--font-weight-regular);
   text-align: center;
-  flex: 1;
+  margin-top: 15rem;
 `;

@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const GameBoardContainer = styled.main`
+export const GameBoardContainer = styled(motion.main)`
   margin: auto;
   background-color: var(--accent-color);
 

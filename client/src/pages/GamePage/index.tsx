@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TransitionElements from "../../shared/components/formElements/transitionElements";
@@ -32,7 +33,7 @@ const GamePage = () => {
       console.log(errorMessage);
     });
 
-    socket.on("startGame", ({ start }) => {
+    socket.on("startGame", ({ isPlayerOne }) => {
       setBothPlayersJoined(true);
       console.log("game can start");
     });
@@ -43,11 +44,14 @@ const GamePage = () => {
       <TransitionElements />
 
       <Header title="Game page" />
-      {bothPlayersJoined ? (
-        <GameBoard />
-      ) : (
-        <Loader text="Waiting for your friend🥳" />
-      )}
+
+      <AnimatePresence exitBeforeEnter>
+        {bothPlayersJoined ? (
+          <GameBoard />
+        ) : (
+          <Loader text="Waiting for your friend🥳" />
+        )}
+      </AnimatePresence>
     </>
   );
 };
