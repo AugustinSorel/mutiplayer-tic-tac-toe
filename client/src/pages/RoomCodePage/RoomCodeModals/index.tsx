@@ -9,7 +9,7 @@ const RoomCodeModals = () => {
       {isClipBoardModalOpen && (
         <NotificationModal
           closeHandler={closeClipBoardModal}
-          text="Copied to clipboard!"
+          text="Copied to clipboard! 📋"
         />
       )}
     </AnimatePresence>

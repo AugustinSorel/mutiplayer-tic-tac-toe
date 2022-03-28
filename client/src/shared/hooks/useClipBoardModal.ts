@@ -1,16 +1,16 @@
-import clipBoardModalStore from "../store/clipBoardModalStore";
+import notificationModalStore from "../store/notificationModal";
 
 const useClipBoardModal = () => {
-  const closeClipBoardModal = clipBoardModalStore(
-    (state) => state.closeClipBoardModal
+  const closeClipBoardModal = notificationModalStore(
+    (state) => state.closeNotificationModal
   );
 
-  const openClipBoardModal = clipBoardModalStore(
-    (state) => state.openClipBoardModal
+  const openClipBoardModal = notificationModalStore(
+    (state) => state.openNotificationModal
   );
 
-  const isClipBoardModalOpen = clipBoardModalStore(
-    (state) => state.isClipBoardModalOpen
+  const isClipBoardModalOpen = notificationModalStore(
+    (state) => state.isNotificationModalOpen
   );
 
   return { isClipBoardModalOpen, closeClipBoardModal, openClipBoardModal };
