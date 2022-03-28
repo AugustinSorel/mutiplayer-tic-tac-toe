@@ -1,21 +1,14 @@
 import { AnimatePresence } from "framer-motion";
-import { FC } from "react";
 import NotificationModal from "../../../shared/components/modals/NotificationModal";
+import useClipBoardModal from "../../../shared/hooks/useClipBoardModal";
 
-interface Props {
-  showClipBoardModal: boolean;
-  setShowClipBoardModal: (value: boolean) => void;
-}
-
-const RoomCodeModals: FC<Props> = ({
-  showClipBoardModal,
-  setShowClipBoardModal,
-}) => {
+const RoomCodeModals = () => {
+  const { isClipBoardModalOpen, closeClipBoardModal } = useClipBoardModal();
   return (
     <AnimatePresence exitBeforeEnter>
-      {showClipBoardModal && (
+      {isClipBoardModalOpen && (
         <NotificationModal
-          closeHandler={() => setShowClipBoardModal(false)}
+          closeHandler={closeClipBoardModal}
           text="Copied to clipboard!"
         />
       )}
