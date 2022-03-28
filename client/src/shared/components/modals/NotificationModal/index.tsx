@@ -15,8 +15,8 @@ const NotificationModal: FC<Props> = ({ closeHandler, text }) => {
   useEffect(() => {
     setTimeout(() => {
       closeHandler();
-    }, 1000);
-  }, []);
+    }, 2000);
+  }, [closeHandler]);
 
   return (
     <NotificationModalContainer
