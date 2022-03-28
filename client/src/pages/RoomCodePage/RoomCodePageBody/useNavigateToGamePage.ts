@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import useNotificationModal from "../../../shared/hooks/useNotificationModal";
 
 const useNavigateToGamePage = () => {
   const navigate = useNavigate();
+  const { openNotificationModal } = useNotificationModal();
 
   const navigateToGamePage = (
     e: React.FormEvent<HTMLFormElement>,
@@ -10,6 +12,7 @@ const useNavigateToGamePage = () => {
     e.preventDefault();
 
     if (!roomId) {
+      openNotificationModal("Room code is required! 🙄");
       return;
     }
 

@@ -1,17 +1,12 @@
 import { AnimatePresence } from "framer-motion";
 import NotificationModal from "../../../shared/components/modals/NotificationModal";
-import useClipBoardModal from "../../../shared/hooks/useClipBoardModal";
+import useNotificationModal from "../../../shared/hooks/useNotificationModal";
 
 const RoomCodeModals = () => {
-  const { isClipBoardModalOpen, closeClipBoardModal } = useClipBoardModal();
+  const { isNotificationModalOpen } = useNotificationModal();
   return (
     <AnimatePresence exitBeforeEnter>
-      {isClipBoardModalOpen && (
-        <NotificationModal
-          closeHandler={closeClipBoardModal}
-          text="Copied to clipboard! 📋"
-        />
-      )}
+      {isNotificationModalOpen && <NotificationModal />}
     </AnimatePresence>
   );
 };

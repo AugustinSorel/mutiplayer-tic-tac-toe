@@ -1,22 +1,21 @@
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 import SvgIcon from "../../formElements/SvgIcon";
 import {
   NotificationModalContainer,
   NotificationModalText,
 } from "./NotificationModal.styled";
 import SvgPaths from "../../../utils/SvgPaths";
+import useNotificationModal from "../../../hooks/useNotificationModal";
 
-interface Props {
-  closeHandler: () => void;
-  text: string;
-}
+const NotificationModal = () => {
+  const { text, isNotificationModalOpen, closeNotificationModal } =
+    useNotificationModal();
 
-const NotificationModal: FC<Props> = ({ closeHandler, text }) => {
   useEffect(() => {
     setTimeout(() => {
-      closeHandler();
+      closeNotificationModal();
     }, 2000);
-  }, [closeHandler]);
+  }, [closeNotificationModal]);
 
   return (
     <NotificationModalContainer
@@ -25,7 +24,11 @@ const NotificationModal: FC<Props> = ({ closeHandler, text }) => {
       exit={{ y: "-200%" }}
     >
       <NotificationModalText>{text}</NotificationModalText>
-      <SvgIcon path={SvgPaths.close} clickHandler={closeHandler} size="small" />
+      <SvgIcon
+        path={SvgPaths.close}
+        clickHandler={closeNotificationModal}
+        size="small"
+      />
     </NotificationModalContainer>
   );
 };

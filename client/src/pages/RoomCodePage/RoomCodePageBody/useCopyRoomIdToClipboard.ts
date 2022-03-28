@@ -1,11 +1,11 @@
-import useClipBoardModal from "../../../shared/hooks/useClipBoardModal";
+import useNotificationModal from "../../../shared/hooks/useNotificationModal";
 
 const useCopyRoomIdToClipboard = () => {
-  const { openClipBoardModal } = useClipBoardModal();
+  const { openNotificationModal } = useNotificationModal();
 
   const copyRoomIdToClipboard = (roomCode: string) => {
     navigator.clipboard.writeText(`${window.location.href}game/${roomCode}`);
-    openClipBoardModal();
+    openNotificationModal("Copied to clipboard! 📋");
   };
 
   return copyRoomIdToClipboard;
