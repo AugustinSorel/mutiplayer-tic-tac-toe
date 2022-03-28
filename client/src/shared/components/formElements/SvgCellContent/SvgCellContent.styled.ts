@@ -7,3 +7,5 @@ export const SvgCellContentStyle = styled(motion.svg)`
   fill: transparent;
   stroke: var(--text-color);
 `;
+
+export const PathCellContent = styled(motion.path)``;
