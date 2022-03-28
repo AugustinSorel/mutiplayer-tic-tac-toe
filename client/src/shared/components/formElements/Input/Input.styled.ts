@@ -28,4 +28,5 @@ export const Label = styled(motion.label)`
   line-height: 18px;
   pointer-events: none;
   text-transform: capitalize;
+  user-select: none;
 `;

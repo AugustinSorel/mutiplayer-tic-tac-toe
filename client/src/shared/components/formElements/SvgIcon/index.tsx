@@ -18,7 +18,7 @@ const SvgIcon: FC<Props> = ({ path, clickHandler, size }) => {
       case "large":
         return 25;
       default:
-        return 30;
+        return 25;
     }
   };
 
