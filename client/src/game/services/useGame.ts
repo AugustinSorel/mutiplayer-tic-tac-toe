@@ -28,12 +28,20 @@ const useGame = () => {
       joinRoomErrorHandler(errorMessage)
     );
 
-    socket.on("startGame", startGameHandler);
+    socket.on("startGame", ({ isPlayerOne }) => startGameHandler(isPlayerOne));
 
     socket.on("opponentLeft", opponentLeftHandler);
 
     return () => leaveRoomHandler(roomId);
-  }, [socket, roomId]);
+  }, [
+    socket,
+    roomId,
+    joinRoomErrorHandler,
+    startGameHandler,
+    roomJoinedHandler,
+    opponentLeftHandler,
+    leaveRoomHandler,
+  ]);
 };
 
 export default useGame;

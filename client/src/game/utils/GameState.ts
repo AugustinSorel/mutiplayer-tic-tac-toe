@@ -10,6 +10,7 @@ interface GameState {
   getGameCell: (index: number) => gameChars;
 
   isPlayerOneTurn: boolean;
+  setIsPlayerOneTurn: (isPlayerOneTurn: boolean) => void;
 
   areBothPlayersIn: boolean;
   setAreBothPlayersIn: (areBothPlayersIn: boolean) => void;

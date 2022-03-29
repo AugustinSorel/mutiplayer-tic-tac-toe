@@ -17,6 +17,7 @@ const gameStore = create<GameState>((set, get) => ({
   getGameCell: (index: number) => get().gameStatus[index],
 
   isPlayerOneTurn: true,
+  setIsPlayerOneTurn: (isPlayerOneTurn: boolean) => set({ isPlayerOneTurn }),
 
   areBothPlayersIn: false,
   setAreBothPlayersIn: (areBothPlayersIn: boolean) => set({ areBothPlayersIn }),
