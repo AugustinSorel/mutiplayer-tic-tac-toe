@@ -58,6 +58,8 @@ io.on("connection", (socket) => {
     console.log("user is trying to leave the room:", roomId);
 
     socket.leave(roomId);
+
+    socket.to(roomId).emit("opponentLeft");
   });
 
   socket.on("disconnect", () => {
