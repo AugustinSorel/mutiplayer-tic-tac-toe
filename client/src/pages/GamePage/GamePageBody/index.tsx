@@ -1,16 +1,13 @@
 import { AnimatePresence } from "framer-motion";
-import { FC } from "react";
 import Loader from "../../../shared/components/UIElements/Loader";
+import gameStore from "../../../shared/store/GameSore";
 import GameBoard from "../GameBoard";
 
-interface Props {
-  bothPlayersJoined: boolean;
-}
-
-const GamePageBody: FC<Props> = ({ bothPlayersJoined }) => {
+const GamePageBody = () => {
+  const areBothPlayersIn = gameStore((state) => state.areBothPlayersIn);
   return (
     <AnimatePresence exitBeforeEnter>
-      {bothPlayersJoined ? (
+      {areBothPlayersIn ? (
         <GameBoard />
       ) : (
         <Loader text="Waiting for your friend🥳" />

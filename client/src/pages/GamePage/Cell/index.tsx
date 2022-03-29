@@ -1,6 +1,6 @@
 import { FC } from "react";
 import SvgCellContent from "../../../shared/components/formElements/SvgCellContent";
-import gameStore from "../../../shared/store/useGame";
+import gameStore from "../../../shared/store/GameSore";
 import theme from "../../../shared/styles/theme";
 import SvpPaths from "../../../shared/utils/SvgPaths";
 import { CellStyle } from "./Cell.styled";
