@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import gameStore from "../../shared/store/GameSore";
 import useJoinRoomError from "./useJoinRoomError";
+import useOpponentLeft from "./useOpponentLeft";
 import useJoinedRoom from "./useRoomJoined";
 import useStartGame from "./useStartGame";
 
@@ -10,6 +11,8 @@ const useGame = () => {
   const joinRoomErrorHandler = useJoinRoomError();
   const startGameHandler = useStartGame();
   const roomJoinedHandler = useJoinedRoom();
+  const opponentLeftHandler = useOpponentLeft();
+  const setAreBothPlayersIn = gameStore((state) => state.setAreBothPlayersIn);
 
   const socket = gameStore((state) => state.socket);
   const [roomId] = useState(pathname.split("/")[2]);
@@ -26,9 +29,12 @@ const useGame = () => {
 
     socket.on("startGame", startGameHandler);
 
+    socket.on("opponentLeft", opponentLeftHandler);
+
     return () => {
       console.log("client wants to leave room:", roomId);
       socket.emit("leaveRoom", roomId);
+      setAreBothPlayersIn(false);
     };
   }, [socket, roomId]);
 };
