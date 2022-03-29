@@ -5,17 +5,9 @@ import theme from "./shared/styles/theme";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import GamePage from "./pages/GamePage";
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-import gameStore from "./shared/store/GameSore";
 
 function App() {
   const location = useLocation();
-  const socket = gameStore((state) => state.socket);
-
-  useEffect(() => {
-    socket.on("connection", () => {});
-    console.log("client connected");
-  }, [socket]);
 
   return (
     <ThemeProvider theme={theme}>
