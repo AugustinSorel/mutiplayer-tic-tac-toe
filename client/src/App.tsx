@@ -6,11 +6,11 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import GamePage from "./pages/GamePage";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import useGame from "./shared/store/useGame";
+import gameStore from "./shared/store/useGame";
 
 function App() {
   const location = useLocation();
-  const socket = useGame((state) => state.socket);
+  const socket = gameStore((state) => state.socket);
 
   useEffect(() => {
     socket.on("connection", () => {});
