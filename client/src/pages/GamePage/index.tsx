@@ -14,10 +14,6 @@ const GamePage = () => {
   const [socket] = useState(io(apiPath));
 
   useEffect(() => {
-    if (!socket) {
-      return;
-    }
-
     console.log("client trying to join room", roomId);
     socket.emit("joinRoom", roomId);
 
