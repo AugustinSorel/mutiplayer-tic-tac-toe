@@ -12,9 +12,10 @@ interface Props {
 const Cell: FC<Props> = ({ index }) => {
   const gameCell = gameStore((state) => state.getGameCell(index));
   const setGameStatus = gameStore((state) => state.setGameStatus);
+  const isPlayerOneTurn = gameStore((state) => state.isPlayerOneTurn);
 
   const clickHandler = () => {
-    if (gameCell !== "") {
+    if (gameCell !== "" || !isPlayerOneTurn) {
       return;
     }
 
