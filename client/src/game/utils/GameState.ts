@@ -2,7 +2,7 @@ import gameChars from "./gameChars";
 
 interface GameState {
   gameStatus: gameChars[];
-  setGameStatus: (index: number) => void;
+  setGameStatus: (newGameStatus: gameChars[]) => void;
 
   getGameCell: (index: number) => gameChars;
 

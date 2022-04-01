@@ -1,12 +1,11 @@
 import create from "zustand";
-import getNewGameStatus from "../../game/services/getNewGameStatus";
 import gameChars from "../../game/utils/gameChars";
 import GameState from "../../game/utils/GameState";
 
 const gameStore = create<GameState>((set, get) => ({
-  gameStatus: Array(24).fill(gameChars.empty),
-  setGameStatus: (cellTargetIndex: number) => {
-    set((state) => ({ gameStatus: getNewGameStatus(state, cellTargetIndex) }));
+  gameStatus: Array(9).fill(gameChars.empty),
+  setGameStatus: (newGameStatus: gameChars[]) => {
+    set({ gameStatus: newGameStatus });
     set((state) => ({ isPlayerOneTurn: !state.isPlayerOneTurn }));
   },
 

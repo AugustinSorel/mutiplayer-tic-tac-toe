@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { io } from "socket.io-client";
+import gameChars from "../../game/utils/gameChars";
 import TransitionElements from "../../shared/components/formElements/transitionElements";
 import Header from "../../shared/components/navigation/Header";
 import useNotificationModal from "../../shared/hooks/useNotificationModal";
@@ -13,6 +14,7 @@ const GamePage = () => {
   const setBothPlayersIn = gameStore((state) => state.setAreBothPlayersIn);
   const { openNotificationModal } = useNotificationModal();
   const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerOneTurn);
+  const setGameStatus = gameStore((state) => state.setGameStatus);
   const { pathname } = useLocation();
 
   const [roomId] = useState(pathname.split("/")[2]);
@@ -43,12 +45,24 @@ const GamePage = () => {
       setBothPlayersIn(false);
     });
 
+    socket.on("opponentPlayed", (newGameStatus: gameChars[]) => {
+      console.log("client opponent played", newGameStatus);
+      setGameStatus(newGameStatus);
+    });
+
     return () => {
       console.log("client wants to leave room:", roomId);
       socket.emit("leaveRoom", roomId);
       setBothPlayersIn(false);
     };
-  }, [socket, roomId]);
+  }, [
+    socket,
+    roomId,
+    openNotificationModal,
+    setBothPlayersIn,
+    setGameStatus,
+    setIsPlayerOneTurn,
+  ]);
 
   return (
     <>
@@ -58,7 +72,7 @@ const GamePage = () => {
 
       <Header title="Game page" />
 
-      <GamePageBody />
+      <GamePageBody socket={socket} roomId={roomId} />
     </>
   );
 };

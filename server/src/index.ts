@@ -62,6 +62,13 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit("opponentLeft");
   });
 
+  socket.on("cellClicked", ({ newGameStatus, roomId }) => {
+    console.log(roomId);
+
+    console.log(newGameStatus);
+    socket.to(roomId).emit("opponentPlayed", newGameStatus);
+  });
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
