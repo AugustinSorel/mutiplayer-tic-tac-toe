@@ -6,7 +6,7 @@ const gameStore = create<GameState>((set, get) => ({
   gameStatus: Array(9).fill(gameChars.empty),
   setGameStatus: (newGameStatus: gameChars[]) => {
     set({ gameStatus: newGameStatus });
-    set((state) => ({ isPlayerOneTurn: !state.isPlayerOneTurn }));
+    // set((state) => ({ isPlayerOneTurn: !state.isPlayerOneTurn }));
   },
 
   getGameCell: (index: number) => get().gameStatus[index],

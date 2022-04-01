@@ -18,6 +18,7 @@ const Cell: FC<Props> = ({ index, socket, roomId }) => {
   const setGameStatus = gameStore((state) => state.setGameStatus);
   const gameStatus = gameStore((state) => state.gameStatus);
   const isPlayerOneTurn = gameStore((state) => state.isPlayerOneTurn);
+  const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerOneTurn);
 
   useEffect(() => {
     console.log(isPlayerOneTurn);
@@ -37,6 +38,7 @@ const Cell: FC<Props> = ({ index, socket, roomId }) => {
 
     socket.emit("cellClicked", { newGameStatus, roomId });
     setGameStatus(newGameStatus);
+    setIsPlayerOneTurn(false);
   };
 
   return (
