@@ -16,7 +16,6 @@ const GamePage = () => {
   const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerOneTurn);
   const setGameStatus = gameStore((state) => state.setGameStatus);
   const { pathname } = useLocation();
-  const isPlayerOneTurn = gameStore((state) => state.isPlayerOneTurn);
 
   const [roomId] = useState(pathname.split("/")[2]);
   const [socket] = useState(io(apiPath));
