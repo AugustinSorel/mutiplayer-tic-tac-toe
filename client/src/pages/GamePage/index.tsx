@@ -29,19 +29,74 @@ const GamePage = () => {
     }
 
     if (endGameStatus === "draw") {
-      openNotificationModal("Game ended in a draw");
+      openNotificationModal("Game ended in a draw 😊");
+      setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     }
 
     if (endGameStatus === "playerOneWins" && isPlayerPlayerOne) {
-      openNotificationModal("You won the game");
+      openNotificationModal("You won the game 😀");
+      setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     } else if (endGameStatus === "playerTwoWins" && !isPlayerPlayerOne) {
-      openNotificationModal("You won the game");
+      openNotificationModal("You won the game 😀");
+      setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     } else if (endGameStatus === "playerOneWins" && !isPlayerPlayerOne) {
-      openNotificationModal("You lost the game");
+      openNotificationModal("You lost the game 🥲");
+      setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     } else if (endGameStatus === "playerTwoWins" && isPlayerPlayerOne) {
-      openNotificationModal("You lost the game");
+      openNotificationModal("You lost the game 🥲");
+      setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     }
-  }, [endGameStatus, isPlayerPlayerOne, openNotificationModal]);
+  }, [endGameStatus, isPlayerPlayerOne, setGameStatus, openNotificationModal]);
 
   useEffect(() => {
     console.log("client trying to join room", roomId);
