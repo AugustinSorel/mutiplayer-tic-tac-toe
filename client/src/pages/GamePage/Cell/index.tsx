@@ -19,6 +19,7 @@ const Cell: FC<Props> = ({ index, socket, roomId }) => {
   const gameStatus = gameStore((state) => state.gameStatus);
   const isPlayerOneTurn = gameStore((state) => state.isPlayerTurn);
   const isPlayerPlayerOne = gameStore((state) => state.isPlayerPlayerOne);
+  const setIsGameOver = gameStore((state) => state.setIsGameOver);
 
   const clickHandler = () => {
     if (gameCell !== "" || !isPlayerOneTurn) {
@@ -32,6 +33,8 @@ const Cell: FC<Props> = ({ index, socket, roomId }) => {
 
     socket.emit("cellClicked", { newGameStatus, roomId });
     setGameStatus(newGameStatus);
+
+    setIsGameOver(newGameStatus);
   };
 
   return (

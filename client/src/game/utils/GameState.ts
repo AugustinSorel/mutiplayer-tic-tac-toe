@@ -14,6 +14,9 @@ interface GameState {
 
   areBothPlayersIn: boolean;
   setAreBothPlayersIn: (areBothPlayersIn: boolean) => void;
+
+  isGameOver: boolean;
+  setIsGameOver: (gameStatus: gameChars[]) => void;
 }
 
 export default GameState;
