@@ -19,6 +19,7 @@ const GamePage = () => {
   const { pathname } = useLocation();
   const endGameStatus = gameStore((state) => state.endGameStatus);
   const isPlayerPlayerOne = gameStore((state) => state.isPlayerPlayerOne);
+  const setIsGameOver = gameStore((state) => state.setIsGameOver);
 
   const [roomId] = useState(pathname.split("/")[2]);
   const [socket] = useState(io(apiPath));
@@ -31,6 +32,17 @@ const GamePage = () => {
     if (endGameStatus === "draw") {
       openNotificationModal("Game ended in a draw 😊");
       setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
+      setIsGameOver([
         gameChars.empty,
         gameChars.empty,
         gameChars.empty,
@@ -56,9 +68,31 @@ const GamePage = () => {
         gameChars.empty,
         gameChars.empty,
       ]);
+      setIsGameOver([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     } else if (endGameStatus === "playerTwoWins" && !isPlayerPlayerOne) {
       openNotificationModal("You won the game 😀");
       setGameStatus([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
+      setIsGameOver([
         gameChars.empty,
         gameChars.empty,
         gameChars.empty,
@@ -82,6 +116,17 @@ const GamePage = () => {
         gameChars.empty,
         gameChars.empty,
       ]);
+      setIsGameOver([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     } else if (endGameStatus === "playerTwoWins" && isPlayerPlayerOne) {
       openNotificationModal("You lost the game 🥲");
       setGameStatus([
@@ -95,8 +140,25 @@ const GamePage = () => {
         gameChars.empty,
         gameChars.empty,
       ]);
+      setIsGameOver([
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+        gameChars.empty,
+      ]);
     }
-  }, [endGameStatus, isPlayerPlayerOne, setGameStatus, openNotificationModal]);
+  }, [
+    endGameStatus,
+    isPlayerPlayerOne,
+    setGameStatus,
+    openNotificationModal,
+    setIsGameOver,
+  ]);
 
   useEffect(() => {
     console.log("client trying to join room", roomId);

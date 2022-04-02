@@ -40,19 +40,20 @@ const gameStore = create<GameState>((set, get) => ({
       if (winCondition.every((w) => gameStatus[w] === gameChars.playerOne)) {
         set({ isGameOver: true });
         set({ endGameStatus: "playerOneWins" });
-      }
-      if (winCondition.every((w) => gameStatus[w] === gameChars.playerTwo)) {
+      } else if (
+        winCondition.every((w) => gameStatus[w] === gameChars.playerTwo)
+      ) {
         set({ endGameStatus: "playerTwoWins" });
         set({ isGameOver: true });
-      }
-
-      if (
+      } else if (
         gameStatus.every((cell) => cell !== gameChars.empty) &&
         !get().isGameOver
       ) {
         console.log("It's a draw!");
         set({ endGameStatus: "draw" });
         set({ isGameOver: true });
+      } else {
+        set({ isGameOver: false });
       }
     }
   },
