@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Socket } from "socket.io-client";
 import gameChars from "../../../game/utils/gameChars";
 import SvgCellContent from "../../../shared/components/formElements/SvgCellContent";
@@ -17,28 +17,21 @@ const Cell: FC<Props> = ({ index, socket, roomId }) => {
   const gameCell = gameStore((state) => state.getGameCell(index));
   const setGameStatus = gameStore((state) => state.setGameStatus);
   const gameStatus = gameStore((state) => state.gameStatus);
-  const isPlayerOneTurn = gameStore((state) => state.isPlayerOneTurn);
-  const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerOneTurn);
-
-  useEffect(() => {
-    console.log(isPlayerOneTurn);
-  }, [isPlayerOneTurn]);
+  const isPlayerOneTurn = gameStore((state) => state.isPlayerTurn);
+  const isPlayerPlayerOne = gameStore((state) => state.isPlayerPlayerOne);
 
   const clickHandler = () => {
     if (gameCell !== "" || !isPlayerOneTurn) {
-      console.log(isPlayerOneTurn);
-
       return;
     }
 
     let newGameStatus = [...gameStatus];
-    newGameStatus[index] = isPlayerOneTurn
+    newGameStatus[index] = isPlayerPlayerOne
       ? gameChars.playerOne
       : gameChars.playerTwo;
 
     socket.emit("cellClicked", { newGameStatus, roomId });
     setGameStatus(newGameStatus);
-    setIsPlayerOneTurn(false);
   };
 
   return (

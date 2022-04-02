@@ -6,13 +6,18 @@ const gameStore = create<GameState>((set, get) => ({
   gameStatus: Array(9).fill(gameChars.empty),
   setGameStatus: (newGameStatus: gameChars[]) => {
     set({ gameStatus: newGameStatus });
-    // set((state) => ({ isPlayerOneTurn: !state.isPlayerOneTurn }));
+    set((state) => ({ isPlayerTurn: !state.isPlayerTurn }));
   },
 
   getGameCell: (index: number) => get().gameStatus[index],
 
-  isPlayerOneTurn: true,
-  setIsPlayerOneTurn: (isPlayerOneTurn: boolean) => set({ isPlayerOneTurn }),
+  isPlayerTurn: true,
+  setIsPlayerTurn: (isPlayerTurn: boolean) =>
+    set({ isPlayerTurn: isPlayerTurn }),
+
+  isPlayerPlayerOne: true,
+  setIsPlayerPlayerOne: (isPlayerPlayerOne: boolean) =>
+    set({ isPlayerPlayerOne }),
 
   areBothPlayersIn: false,
   setAreBothPlayersIn: (areBothPlayersIn: boolean) => set({ areBothPlayersIn }),

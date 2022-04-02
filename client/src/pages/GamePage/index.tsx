@@ -13,7 +13,8 @@ import GamePageModals from "./GamePageModals";
 const GamePage = () => {
   const setBothPlayersIn = gameStore((state) => state.setAreBothPlayersIn);
   const { openNotificationModal } = useNotificationModal();
-  const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerOneTurn);
+  const setIsPlayerOneTurn = gameStore((state) => state.setIsPlayerTurn);
+  const setIsPlayerPlayerOne = gameStore((state) => state.setIsPlayerPlayerOne);
   const setGameStatus = gameStore((state) => state.setGameStatus);
   const { pathname } = useLocation();
 
@@ -35,6 +36,7 @@ const GamePage = () => {
 
     socket.on("startGame", ({ isPlayerOne }) => {
       console.log("client start game", isPlayerOne);
+      setIsPlayerPlayerOne(isPlayerOne);
       setIsPlayerOneTurn(isPlayerOne);
       setBothPlayersIn(true);
     });
@@ -48,8 +50,6 @@ const GamePage = () => {
     socket.on("opponentPlayed", (newGameStatus: gameChars[]) => {
       console.log("client opponent played", newGameStatus);
       setGameStatus(newGameStatus);
-
-      setIsPlayerOneTurn(true);
     });
 
     return () => {
