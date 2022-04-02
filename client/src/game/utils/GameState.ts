@@ -17,6 +17,11 @@ interface GameState {
 
   isGameOver: boolean;
   setIsGameOver: (gameStatus: gameChars[]) => void;
+
+  endGameStatus: "playerOneWins" | "playerTwoWins" | "draw" | null;
+  setEndGameStatus: (
+    endGameStatus: "playerOneWins" | "playerTwoWins" | "draw"
+  ) => void;
 }
 
 export default GameState;

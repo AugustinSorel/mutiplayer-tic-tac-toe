@@ -17,9 +17,31 @@ const GamePage = () => {
   const setIsPlayerPlayerOne = gameStore((state) => state.setIsPlayerPlayerOne);
   const setGameStatus = gameStore((state) => state.setGameStatus);
   const { pathname } = useLocation();
+  const endGameStatus = gameStore((state) => state.endGameStatus);
+  const isPlayerPlayerOne = gameStore((state) => state.isPlayerPlayerOne);
 
   const [roomId] = useState(pathname.split("/")[2]);
   const [socket] = useState(io(apiPath));
+
+  useEffect(() => {
+    if (!endGameStatus) {
+      return;
+    }
+
+    if (endGameStatus === "draw") {
+      openNotificationModal("Game ended in a draw");
+    }
+
+    if (endGameStatus === "playerOneWins" && isPlayerPlayerOne) {
+      openNotificationModal("You won the game");
+    } else if (endGameStatus === "playerTwoWins" && !isPlayerPlayerOne) {
+      openNotificationModal("You won the game");
+    } else if (endGameStatus === "playerOneWins" && !isPlayerPlayerOne) {
+      openNotificationModal("You lost the game");
+    } else if (endGameStatus === "playerTwoWins" && isPlayerPlayerOne) {
+      openNotificationModal("You lost the game");
+    }
+  }, [endGameStatus]);
 
   useEffect(() => {
     console.log("client trying to join room", roomId);

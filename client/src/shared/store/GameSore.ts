@@ -7,6 +7,7 @@ const gameStore = create<GameState>((set, get) => ({
   setGameStatus: (newGameStatus: gameChars[]) => {
     set({ gameStatus: newGameStatus });
     set((state) => ({ isPlayerTurn: !state.isPlayerTurn }));
+    get().setIsGameOver(newGameStatus);
   },
 
   getGameCell: (index: number) => get().gameStatus[index],
@@ -37,15 +38,30 @@ const gameStore = create<GameState>((set, get) => ({
 
     for (let winCondition of winningConditions) {
       if (winCondition.every((w) => gameStatus[w] === gameChars.playerOne)) {
-        console.log("Player One Wins!");
-        return "X";
+        set({ isGameOver: true });
+        set({ endGameStatus: "playerOneWins" });
       }
       if (winCondition.every((w) => gameStatus[w] === gameChars.playerTwo)) {
-        console.log("Player Two Wins!");
-        return "O";
+        set({ endGameStatus: "playerTwoWins" });
+        set({ isGameOver: true });
+      }
+
+      if (
+        gameStatus.every((cell) => cell !== gameChars.empty) &&
+        !get().isGameOver
+      ) {
+        console.log("It's a draw!");
+        set({ endGameStatus: "draw" });
+        set({ isGameOver: true });
       }
     }
-    return "";
+  },
+
+  endGameStatus: null,
+  setEndGameStatus: (
+    endGameStatus: "playerOneWins" | "playerTwoWins" | "draw"
+  ) => {
+    set({ endGameStatus });
   },
 }));
 
