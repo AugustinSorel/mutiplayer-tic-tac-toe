@@ -41,7 +41,7 @@ const GamePage = () => {
     } else if (endGameStatus === "playerTwoWins" && isPlayerPlayerOne) {
       openNotificationModal("You lost the game");
     }
-  }, [endGameStatus]);
+  }, [endGameStatus, isPlayerPlayerOne, openNotificationModal]);
 
   useEffect(() => {
     console.log("client trying to join room", roomId);
@@ -86,6 +86,7 @@ const GamePage = () => {
     setBothPlayersIn,
     setGameStatus,
     setIsPlayerOneTurn,
+    setIsPlayerPlayerOne,
   ]);
 
   return (
