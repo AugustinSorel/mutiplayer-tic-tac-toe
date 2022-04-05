@@ -12,10 +12,10 @@
 ## Images
 
 ### Home page
-![alt text]()
+![alt text](https://github.com/AugustinSorel/mutiplayer-tic-tac-toe/blob/master/images/homePage.jpeg)
 
 ### Waiting page
-![alt text]()
+![alt text](https://github.com/AugustinSorel/mutiplayer-tic-tac-toe/blob/master/images/waitingPage.jpeg)
 
 ### Game page
-![alt text]()
+![alt text](https://github.com/AugustinSorel/mutiplayer-tic-tac-toe/blob/master/images/gamePage.jpeg)
